@@ -45,7 +45,11 @@ namespace :seinfeld do
   end
 
   task :tz => :init do
-
+    raise "Need USER=" if ENV['USER'].to_s.size.zero?
+    #raise "Need ZONE=" if ENV['ZONE'].to_s.size.zero?
+    u = Seinfeld::User.first(:login => ENV['USER'])
+    #u.time_zone = ENV['ZONE']
+    u.save
   end
 
   task :add => :init do
