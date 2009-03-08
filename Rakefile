@@ -44,12 +44,8 @@ namespace :seinfeld do
     puts "Longest Streak: #{u.longest_streak} #{u.longest_streak_start} => #{u.longest_streak_end}"
   end
 
-  task :set_time_zone => :init do
-    raise "Need USER=" if ENV['USER'].to_s.size.zero?
-    raise "Need ZONE=" if ENV['ZONE'].to_s.size.zero?
-    u = Seinfeld::User.first(:login => ENV['USER'])
-    u.time_zone = ENV['ZONE']
-    u.save
+  task :tz => :init do
+
   end
 
   task :add => :init do
