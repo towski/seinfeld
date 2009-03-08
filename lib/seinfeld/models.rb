@@ -71,7 +71,7 @@ module Seinfeld
 
     def clear_progress
       transaction do
-        repository.delete progressions.send(:scoped_query)
+        progressions.destroy!
         update_attributes \
           :streak_start => nil, :streak_end => nil, :current_streak => nil,
           :longest_streak => nil, :longest_streak_start => nil, :longest_streak_end => nil,
