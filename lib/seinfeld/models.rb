@@ -26,7 +26,7 @@ module Seinfeld
       attr_accessor :github_password
     end
 
-    self.feed_format = "http://github.com/%s.atom?page=%d"
+    self.feed_format = "http://github.com/%s.atom"
 
     include DataMapper::Resource
     property :id,                   Integer, :serial => true
@@ -42,6 +42,10 @@ module Seinfeld
     property :time_zone,            String
 
     has n, :progressions, :class_name => "Seinfeld::Progression", :order => [:created_at.desc]
+    
+    def debug(message)
+      puts message if ENV['DEBUG']
+    end
 
     def self.paginated_each(&block)
       max_id = 0
@@ -120,21 +124,23 @@ module Seinfeld
       end
     end
 
-    def committed_days_in_feed(page = 1)
+    def committed_days_in_feed
       Time.zone     = time_zone || "UTC"
-      feed          = get_feed(page)
+      feed          = get_feed
       return nil if feed.nil?
       entry_id      = nil # track the first entry id to store in the user model
       skipped_early = nil
       return nil if feed.entries.empty?
       days = feed.entries.inject({}) do |selected, entry|
+        debug "processing #{entry.title.inspect}"
+
         this_entry_id = entry.item_id
         entry_id    ||= this_entry_id
         if last_entry_id == this_entry_id
-          skipped_early = true
+          debug "stopping because #{last_entry_id} == #{this_entry_id}"
           break selected
         end
-
+        
         if entry.title.downcase =~ %r{^#{login.downcase} (pushed|committed|applied fork commits|created branch)}
           updated = entry.updated_at.in_time_zone
           date    = Date.civil(updated.year, updated.month, updated.day)
@@ -143,15 +149,7 @@ module Seinfeld
           selected
         end
       end.keys
-      if page == 1
-        self.last_entry_id = entry_id 
-        unless skipped_early
-          while paged_days = committed_days_in_feed(page += 1)
-            days += paged_days
-          end
-          days.uniq!
-        end
-      end
+      self.last_entry_id = feed.entries.first.item_id
       days
     end
 
@@ -192,9 +190,10 @@ module Seinfeld
     end
 
   private
-    def get_feed(page = 1)
+    def get_feed
+      debug "loading feed: " + self.class.feed_format % login
       feed = nil
-      open(self.class.feed_format % [login, page]) { |f| feed = FeedMe.parse(f.read) }
+      open(self.class.feed_format % login) { |f| feed = FeedMe.parse(f.read) }
       feed
     rescue
       nil
