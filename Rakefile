@@ -16,10 +16,8 @@ task :default => 'spec'
 
 desc "cron task for keeping the CAN updated.  Run once every hour."
 task :cron => 'seinfeld:init' do
-  if Time.now.hour % 4 == 0
-    Seinfeld::User.paginated_each do |user|
-      user.update_progress
-    end
+  Seinfeld::User.paginated_each do |user|
+    user.update_progress
   end
 end
 
