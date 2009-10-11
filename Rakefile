@@ -82,6 +82,11 @@ namespace :seinfeld do
     end
   end
 
+  desc "Clear progress of all users"
+  task :clear_all => :init do
+    Seinfeld::User.paginated_each { |u| u.clear_progress }
+  end
+
   desc "Clear progress of USER."
   task :clear => :init do
     raise "Need USER=" if ENV['USER'].to_s.size.zero?
