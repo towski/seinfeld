@@ -4,3 +4,9 @@ tmp
 config/seinfeld_user.yaml
 config/seinfeld.rb
 *.sqlite3
+config/environment.rb
+app/config.ru
+app/config.rb
+app/tmp
+app/*.log
+config/database.yml

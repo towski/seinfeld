@@ -1,18 +1,14 @@
-$: << File.join(File.dirname(__FILE__), 'lib')
 require 'rubygems'
-require 'rake/gempackagetask'
-# If this require failes, try "gem install rspec"
-require 'spec/rake/spectask'
-require 'time'
-
-file_list = FileList['spec/*_spec.rb']
-
-Spec::Rake::SpecTask.new('spec') do |t|
-  t.spec_files = file_list
+require 'rake'
+require 'rake/testtask'
+Rake::TestTask.new(:test) do |test|
+  test.libs << 'lib' << 'test'
+  test.pattern = 'test/**/*_test.rb'
+  test.verbose = true
 end
 
 desc 'Default: run specs.'
-task :default => 'spec'
+task :default => 'test'
 
 desc "cron task for keeping the CAN updated.  Run once every hour."
 task :cron => 'seinfeld:init' do
