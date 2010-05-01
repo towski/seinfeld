@@ -1,0 +1,25 @@
+development:
+  adapter: mysql
+  encoding: utf8
+  database: seinfeld
+  username: root
+  password:
+  host: localhost
+<% if File.exist?("/var/run/mysql5/mysqld.sock") %>
+  socket: /var/run/mysql5/mysqld.sock
+<% elsif File.exist? "/tmp/mysql.sock" %>
+  socket: /tmp/mysql.sock
+<% end %>
+
+test:
+  adapter: mysql
+  encoding: utf8
+  database: seinfeld_test
+  username: root
+  password:
+  host: localhost
+<% if File.exist?("/var/run/mysql5/mysqld.sock") %>
+  socket: /var/run/mysql5/mysqld.sock
+<% elsif File.exist? "/tmp/mysql.sock" %>
+  socket: /tmp/mysql.sock
+<% end %>
