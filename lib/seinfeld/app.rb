@@ -69,11 +69,6 @@ class Seinfeld
       show_group_calendar
     end
 
-    get '/*' do
-      redirect "~#{params[:splat].join("/")}", 301
-    end
-
-
     helpers do
       include Seinfeld::CalendarHelper
 
