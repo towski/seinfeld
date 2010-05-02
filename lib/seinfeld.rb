@@ -25,7 +25,7 @@ class Seinfeld < ActiveRecord::Base
     # String path to the location of the log directory.
     attr_accessor :log_path
 
-    attr_reader :logger
+    attr_accessor :logger
   end
 
   [:User, :Progression, :Feed, :Streak].each do |const|
@@ -36,12 +36,11 @@ class Seinfeld < ActiveRecord::Base
     @env = ActiveSupport::StringInquirer.new(v || 'development')
   end
 
-  def self.logger
-    @logger ||= begin
-      file = path_from_root(log_path)
-      FileUtils.mkdir_p File.dirname(file)
-      Logger.new(file)
-    end
+  def self.log_to(path)
+    self.log_path = path
+    file = path_from_root(log_path)
+    FileUtils.mkdir_p File.dirname(file)
+    ActiveRecord::Base.logger = self.logger = Logger.new(file)
   end
 
   # Public: Reads the database.yml config and starts up the connection to the
@@ -55,7 +54,7 @@ class Seinfeld < ActiveRecord::Base
     yaml = ERB.new(IO.read(path)).result
     data = YAML.load(yaml)
     ActiveRecord::Base.establish_connection data[env.to_s]
-    ActiveRecord::Base.logger = logger
+    log_to "log/#{Seinfeld.env}.log"
   end
 
   # Either joins the given path with the Seinfeld.root as a base, or returns
@@ -72,4 +71,3 @@ end
 Seinfeld.root           = File.expand_path(File.join(dir, '..'))
 Seinfeld.env            = ENV['RACK_ENV'] || ENV['RAILS_ENV']
 Seinfeld.db_config_path = 'config/database.yml'
-Seinfeld.log_path       = "log/#{Seinfeld.env}.log"

@@ -19,6 +19,7 @@ class ActiveSupport::TestCase
 end
 
 Seinfeld.configure('test')
+Seinfeld.logger.level = Logger::DEBUG
 Time.zone = 'Pacific Time (US & Canada)'
 
 begin
