@@ -9,4 +9,6 @@ app/config.ru
 app/config.rb
 app/tmp
 app/*.log
+
 config/database.yml
+log

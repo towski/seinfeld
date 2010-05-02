@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xml:lang="en-US" xmlns="http://www.w3.org/2005/Atom">
+  <id>tag:github.com,2008:/technoweenie</id>
+  <link type="text/html" href="http://github.com" rel="alternate"/>
+  <link type="application/atom+xml" href="http://github.com/technoweenie.atom" rel="self"/>
+  <title>technoweenie's Activity</title>
+  <updated>2009-12-19T15:00:51-08:00</updated>
+  <entry>
+    <id>tag:github.com,2008:PushEvent/113902146</id>
+    <published>2009-12-19T14:42:13-08:00</published>
+    <updated>2009-12-19T14:42:13-08:00</updated>
+    <link type="text/html" href="http://github.com/technoweenie/faraday/commits/master" rel="alternate"/>
+    <title>technoweenie committed to master at technoweenie/faraday</title>
+    <author>
+      <name>technoweenie</name>
+    </author>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:IssuesEvent/114814260</id>
+    <published>2009-12-18T18:40:40-08:00</published>
+    <updated>2009-12-21T19:40:40-08:00</updated>
+    <link type="text/html" href="http://github.com/mxcl/homebrew/issues/240/find" rel="alternate"/>
+    <title>traviscline opened issue 240 on mxcl/homebrew</title>
+    <author>
+      <name>traviscline</name>
+    </author>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:PushEvent/113902146</id>
+    <published>2009-12-17T14:42:13-08:00</published>
+    <updated>2009-12-19T14:42:13-08:00</updated>
+    <link type="text/html" href="http://github.com/technoweenie/faraday/commits/master" rel="alternate"/>
+    <title>technoweenie pushed to master at technoweenie/faraday</title>
+    <author>
+      <name>technoweenie</name>
+    </author>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:PushEvent/113902146</id>
+    <published>2009-12-16T14:42:13-08:00</published>
+    <updated>2009-12-19T14:42:13-08:00</updated>
+    <link type="text/html" href="http://github.com/technoweenie/faraday/commits/master" rel="alternate"/>
+    <title>technoweenie applied fork commits to master at technoweenie/faraday</title>
+    <author>
+      <name>technoweenie</name>
+    </author>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:PushEvent/113902146</id>
+    <published>2009-12-15T14:42:13-08:00</published>
+    <updated>2009-12-19T14:42:13-08:00</updated>
+    <link type="text/html" href="http://github.com/technoweenie/faraday/commits/master" rel="alternate"/>
+    <title>technoweenie created branch master at technoweenie/faraday</title>
+    <author>
+      <name>technoweenie</name>
+    </author>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:PushEvent/113902146</id>
+    <published>2009-12-15T14:42:13-08:00</published>
+    <updated>2009-12-19T14:42:13-08:00</updated>
+    <link type="text/html" href="http://github.com/technoweenie/faraday/commits/master" rel="alternate"/>
+    <title>technoweenie created branch master at technoweenie/faraday</title>
+    <author>
+      <name>technoweenie</name>
+    </author>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:PushEvent/113902146</id>
+    <published>2009-12-14T14:42:13-08:00</published>
+    <updated>2009-12-19T14:42:13-08:00</updated>
+    <link type="text/html" href="http://github.com/technoweenie/faraday/commits/master" rel="alternate"/>
+    <title>technoweenie open sourced technoweenie/faraday</title>
+    <author>
+      <name>technoweenie</name>
+    </author>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:PushEvent/113902146</id>
+    <published>2009-12-13T14:42:13-08:00</published>
+    <updated>2009-12-19T14:42:13-08:00</updated>
+    <link type="text/html" href="http://github.com/technoweenie/faraday/commits/master" rel="alternate"/>
+    <title>technoweenie created branch technoweenie/faraday</title>
+    <author>
+      <name>otherguy</name>
+    </author>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:PushEvent/113902146</id>
+    <published>2009-12-13T14:42:13-08:00</published>
+    <updated>2009-12-19T14:42:13-08:00</updated>
+    <link type="text/html" href="http://github.com/technoweenie/faraday/commits/master" rel="alternate"/>
+    <title>otherguy created branch technoweenie/faraday</title>
+    <author>
+      <name>technoweenie</name>
+    </author>
+  </entry>
+</feed>

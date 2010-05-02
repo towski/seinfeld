@@ -5,13 +5,8 @@ development:
   username: root
   password:
   host: localhost
-<% if File.exist?("/var/run/mysql5/mysqld.sock") %>
-  socket: /var/run/mysql5/mysqld.sock
-<% elsif File.exist? "/tmp/mysql.sock" %>
-  socket: /tmp/mysql.sock
-<% end %>
 
 test:
   adapter: sqlite3
   encoding: utf8
-  database: :memory:
+  database: ":memory:"

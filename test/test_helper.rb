@@ -9,10 +9,18 @@ RunningMan.setup_on ActiveSupport::TestCase, :ActiveRecordBlock
 class ActiveSupport::TestCase
   FEED_PATH = File.join(File.dirname(__FILE__), 'feeds')
 
-  def feed_data(feed)
+  def self.feed_data(feed)
     IO.read File.join(FEED_PATH, "#{feed}.atom")
   end
+
+  def feed_data(feed)
+    self.class.feed_data(feed)
+  end
 end
+
+Seinfeld.env = 'test'
+Seinfeld.configure
+Time.zone = 'Pacific Time (US & Canada)'
 
 begin
   require 'ruby-debug'

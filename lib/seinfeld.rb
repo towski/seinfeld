@@ -3,6 +3,7 @@ $LOAD_PATH.unshift File.expand_path(dir)
 $LOAD_PATH.unshift *Dir["#{dir}/../vendor/**/lib"]
 
 require 'erb'
+require 'logger'
 require 'active_record' # v3
 
 # Gives all the AR models their own tablenamespace:
@@ -27,8 +28,16 @@ class Seinfeld < ActiveRecord::Base
     attr_reader :logger
   end
 
+  [:Feed].each do |const|
+    autoload const, "seinfeld/#{const.to_s.underscore}"
+  end
+
   def self.logger
-    @logger ||= Logger.new(path_from_root(log_path))
+    @logger ||= begin
+      file = path_from_root(log_path)
+      FileUtils.mkdir_p File.dirname(file)
+      Logger.new(file)
+    end
   end
 
   # Public: Reads the database.yml config and starts up the connection to the
@@ -36,10 +45,11 @@ class Seinfeld < ActiveRecord::Base
   #
   # Returns nothing.
   def self.configure
+    Time.zone = "UTC"
     path = path_from_root(db_config_path)
-    yaml = ERB.new(IO.read(path).result)
-    ActiveRecord::Base.configurations = YAML.load(yaml)
-    ActiveRecord::Base.establish_connection
+    yaml = ERB.new(IO.read(path)).result
+    data = YAML.load(yaml)
+    ActiveRecord::Base.establish_connection data[env.to_s]
     ActiveRecord::Base.logger = logger
   end
 

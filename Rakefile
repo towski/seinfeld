@@ -10,6 +10,11 @@ end
 desc 'Default: run specs.'
 task :default => 'test'
 
+desc "Open an irb session preloaded with this library"
+task :console do
+  sh "irb -rubygems -r ./lib/seinfeld.rb"
+end
+
 desc "cron task for keeping the CAN updated.  Run once every hour."
 task :cron => 'seinfeld:init' do
   if Time.now.hour % 4 == 0
