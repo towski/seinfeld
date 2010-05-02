@@ -28,7 +28,7 @@ class Seinfeld < ActiveRecord::Base
     attr_reader :logger
   end
 
-  [:Feed].each do |const|
+  [:Feed, :Streak].each do |const|
     autoload const, "seinfeld/#{const.to_s.underscore}"
   end
 
