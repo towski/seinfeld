@@ -1,6 +1,6 @@
 require 'date'
 
-module Seinfeld
+class Seinfeld
   # CalendarHelper allows you to draw a databound calendar with fine-grained CSS formatting
   #
   # http://topfunky.net/svn/plugins/calendar_helper/lib/calendar_helper.rb
@@ -151,7 +151,7 @@ module Seinfeld
         end
       end unless last.wday == last_weekday
       cal << "</tr></tbody></table>"
-      cal.to_s
+      cal.join("\n")
     end
   
     private

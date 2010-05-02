@@ -28,6 +28,11 @@ namespace :seinfeld do
     Seinfeld.configure
   end
 
+  desc "Start CalendarAboutNothing for development"
+  task :start do
+    system "shotgun config.ru"
+  end
+
   desc "Inspect USER."
   task :show => :init do
     raise "Need USER=" if ENV['USER'].to_s.size.zero?

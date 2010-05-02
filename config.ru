@@ -1,6 +1,4 @@
-require File.dirname(__FILE__) + "/../seinfeld_calendar.rb"
+require ::File.dirname(__FILE__) + "/lib/seinfeld.rb"
 
-set :run, false
-set :env, ENV['APP_ENV'] || :production
-
-run Sinatra::Application
+Seinfeld::App.set :environment, ENV['RACK_ENV'] || ENV['RAILS_ENV'] || :production
+run Seinfeld::App
