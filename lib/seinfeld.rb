@@ -17,7 +17,7 @@ class Seinfeld < ActiveRecord::Base
 
     # ActiveSupport::StringInquirer instance of the current environment.  Set
     # by RACK_ENV or RAILS_ENV.
-    attr_accessor :env
+    attr_reader :env
 
     # String path to the database.yml
     attr_accessor :db_config_path
@@ -28,8 +28,12 @@ class Seinfeld < ActiveRecord::Base
     attr_reader :logger
   end
 
-  [:Feed, :Streak].each do |const|
+  [:User, :Progression, :Feed, :Streak].each do |const|
     autoload const, "seinfeld/#{const.to_s.underscore}"
+  end
+
+  def self.env=(v)
+    @env = ActiveSupport::StringInquirer.new(v || 'development')
   end
 
   def self.logger
@@ -44,7 +48,8 @@ class Seinfeld < ActiveRecord::Base
   # database.
   #
   # Returns nothing.
-  def self.configure
+  def self.configure(new_env = nil)
+    self.env = new_env if new_env
     Time.zone = "UTC"
     path = path_from_root(db_config_path)
     yaml = ERB.new(IO.read(path)).result
@@ -65,6 +70,6 @@ class Seinfeld < ActiveRecord::Base
 end
 
 Seinfeld.root           = File.expand_path(File.join(dir, '..'))
-Seinfeld.env            = ActiveSupport::StringInquirer.new((ENV['RACK_ENV'] || ENV['RAILS_ENV'] || 'development').to_s)
+Seinfeld.env            = ENV['RACK_ENV'] || ENV['RAILS_ENV']
 Seinfeld.db_config_path = 'config/database.yml'
 Seinfeld.log_path       = "log/#{Seinfeld.env}.log"

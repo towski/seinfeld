@@ -18,8 +18,7 @@ class ActiveSupport::TestCase
   end
 end
 
-Seinfeld.env = 'test'
-Seinfeld.configure
+Seinfeld.configure('test')
 Time.zone = 'Pacific Time (US & Canada)'
 
 begin
