@@ -5,6 +5,6 @@ nokogiri
 rest-client
 sax-machine
 tzinfo
-activesupport --pre
+activesupport --version '3.0.0.beta3'
 arel
-activerecord --pre
+activerecord --version '3.0.0.beta3'
