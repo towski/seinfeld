@@ -1,6 +1,5 @@
 dir = File.dirname(__FILE__)
 $LOAD_PATH.unshift File.expand_path(dir)
-$LOAD_PATH.unshift *Dir["#{dir}/../vendor/**/lib"]
 
 require 'erb'
 require 'logger'
