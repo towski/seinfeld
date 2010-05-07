@@ -35,8 +35,8 @@ namespace :seinfeld do
 
   desc "Inspect USER."
   task :show => :init do
-    raise "Need USER=" if ENV['USER'].to_s.size.zero?
-    u = Seinfeld::User.first(:login => ENV['USER'])
+    raise "Need USER=" if ENV['USER'].blank?
+    u = Seinfeld::User.find_by_login(ENV['USER'])
     puts "#{u.login}#{" #{u.time_zone}" if u.time_zone}"
     puts "Current Streak: #{u.current_streak} #{u.streak_start} => #{u.streak_end}"
     puts "Longest Streak: #{u.longest_streak} #{u.longest_streak_start} => #{u.longest_streak_end}"
@@ -46,32 +46,32 @@ namespace :seinfeld do
   task :tz => :init do
     raise "Need USER=" if ENV['USER'].to_s.size.zero?
     raise "Need ZONE=" if ENV['ZONE'].to_s.size.zero?
-    zone = ActiveSupport::TimeZone::MAPPING[ENV['ZONE']] || ActiveSupport::TimeZone::MAPPING.index(ENV['ZONE']) || raise("Bad Time Zone")
-    u = Seinfeld::User.first(:login => ENV['USER'])
-    u.time_zone = zone
-    u.save
+    if ActiveSupport::TimeZone::MAPPING.key?(ENV['ZONE'])
+      u = Seinfeld::User.find_by_login(ENV['USER'])
+      u.update_attribute :time_zone, ENV['ZONE']
+    end
   end
 
   desc "Add a USER to the database."
   task :add => :init do
     raise "Need USER=" if ENV['USER'].to_s.size.zero?
-    Seinfeld::User.create(:login => ENV['USER'])
+    Seinfeld::User.create!(:login => ENV['USER'])
   end
 
   desc "Remove a USER from the database."
   task :drop => :init do
     raise "Need USER=" if ENV['USER'].to_s.size.zero?
-    Seinfeld::User.first(:login => ENV['USER']).destroy
+    Seinfeld::User.delete_all(:login => ENV['USER'])
   end
   
   desc "Update the calendar of USER"
   task :update => :init do
-    if ENV['USER'].to_s.size.zero?
+    if ENV['USER'].blank?
       Seinfeld::User.paginated_each do |user|
         user.update_progress
       end
     else
-      user = Seinfeld::User.first(:login => ENV['USER'])
+      user = Seinfeld::User.find_by_login(ENV['USER'])
       if user
         user.update_progress
       else
@@ -82,14 +82,8 @@ namespace :seinfeld do
 
   desc "Clear progress of USER."
   task :clear => :init do
-    raise "Need USER=" if ENV['USER'].to_s.size.zero?
-    Seinfeld::User.first(:login => ENV['USER']).clear_progress
-  end
-
-  desc "Resets progress of USER."
-  task :reset => :init do
-    raise "Need USER=" if ENV['USER'].to_s.size.zero?
-    Seinfeld::User.first(:login => ENV['USER']).reset_progress
+    raise "Need USER=" if ENV['USER'].blank?
+    Seinfeld::User.find_by_login(ENV['USER']).clear_progress
   end
 end
 
