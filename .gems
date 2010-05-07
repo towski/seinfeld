@@ -1,0 +1,10 @@
+builder
+haml
+memcache-client
+nokogiri
+rest-client
+sax-machine
+tzinfo
+activesupport --pre
+arel
+activerecord --pre
