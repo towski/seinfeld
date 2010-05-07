@@ -3,7 +3,7 @@ class Seinfeld
     has_many :progressions, :order => 'seinfeld_progressions.created_at', :dependent => :delete_all
 
     scope :best_current_streak, where('current_streak > 0').order('current_streak desc, login').limit(15)
-    scope :best_alltime_streak, where('longest_streak > 0').order('current_streak desc, login').limit(15)
+    scope :best_alltime_streak, where('longest_streak > 0').order('longest_streak desc, login').limit(15)
 
     def self.paginated_each(limit = 30)
       since = 0
