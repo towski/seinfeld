@@ -5,6 +5,21 @@ class Seinfeld
     scope :best_current_streak, where('current_streak > 0').order('current_streak desc, login').limit(15)
     scope :best_alltime_streak, where('longest_streak > 0').order('current_streak desc, login').limit(15)
 
+    def self.paginated_each(limit = 30)
+      since = 0
+      while users = first_page(limit, since)
+        users.each do |user|
+          yield user
+          since = user.id if user.id > since
+        end
+      end
+    end
+
+    def self.first_page(limit = 30, since = 0)
+      users = all(:order => 'id', :limit => 30, :conditions => ['id > ?', since])
+      users.blank? ? nil : users
+    end
+
     # Public: Queries a user's progress for a given month.
     #
     # Example
