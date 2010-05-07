@@ -1,0 +1,18 @@
+production:
+  adapter: mysql
+  encoding: utf8
+  database: seinfeld
+  username: root
+  password:
+  host: localhost
+development:
+  adapter: mysql
+  encoding: utf8
+  database: seinfeld
+  username: root
+  password:
+  host: localhost
+test:
+  adapter: sqlite3
+  encoding: utf8
+  database: ":memory:"
