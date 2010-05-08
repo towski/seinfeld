@@ -42,6 +42,17 @@ namespace :seinfeld do
     puts "Longest Streak: #{u.longest_streak} #{u.longest_streak_start} => #{u.longest_streak_end}"
   end
 
+  desc "Scan USER feeds."
+  task :scan => :init do
+    raise "Need USER=" if ENV['USER'].blank?
+    user = Seinfeld::User.find_by_login(ENV['USER'])
+    Time.zone = user.time_zone || 'UTC'
+    feed = Seinfeld::Feed.fetch(user.login)
+    feed.items.each do |item|
+      puts "#{item['type']} - #{item['created_at']} - #{Seinfeld::Feed.committed?(item).inspect}"
+    end
+  end
+
   desc "Sets USER's timezone to ZONE."
   task :tz => :init do
     raise "Need USER=" if ENV['USER'].to_s.size.zero?

@@ -1,9 +1,8 @@
 builder
 haml
 memcache-client
-nokogiri
 rest-client
-sax-machine
+yajl-ruby
 tzinfo
 activesupport --version '3.0.0.beta3'
 arel

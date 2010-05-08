@@ -7,16 +7,17 @@ class FeedTest < ActiveSupport::TestCase
     @feed = Seinfeld::Feed.new :technoweenie, data
   end
 
-  test "parses atom data" do
-    assert_kind_of Seinfeld::Feed::Atom, @feed.atom
+  test "parses JSON data" do
+    assert_kind_of Array, @feed.items
+    @feed.items.each { |item| assert_kind_of Hash, item }
   end
 
   test "parses atom entries" do
-    assert_equal 9, @feed.entries.size
+    assert_equal 8, @feed.items.size
   end
 
   test "parses entry published timestamp" do
-    assert_equal Time.zone.local(2009, 12, 19, 14, 42, 13), @feed.entries[0].published_at
+    assert_equal Time.zone.local(2009, 12, 19, 14, 42, 13), Time.zone.parse(@feed.items[0]['created_at'])
   end
 
   test "scans for committed days" do
