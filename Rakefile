@@ -78,9 +78,7 @@ namespace :seinfeld do
   desc "Update the calendar of USER"
   task :update => :init do
     if ENV['USER'].blank?
-      Seinfeld::User.paginated_each do |user|
-        user.update_progress
-      end
+      Rake::Task["cron"].invoke
     else
       user = Seinfeld::User.find_by_login(ENV['USER'])
       if user
@@ -100,7 +98,7 @@ end
 
 desc "cron task for keeping the CAN updated.  Run once every hour."
 task :cron => 'seinfeld:init' do
-  Seinfeld::User.paginated_each do |user|
+  Seinfeld::User.active.paginated_each do |user|
     user.update_progress
   end
 end
