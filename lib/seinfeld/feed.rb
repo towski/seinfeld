@@ -23,6 +23,13 @@ class Seinfeld
       url  = "http://github.com/#{login}.json"
       open(url) { |f| feed = new(login, f.read, url) }
       feed
+    rescue OpenURI::HTTPError => e
+      if e.message =~ /404/
+        nil
+      else
+        # some other error?
+        new(login, "[]", url)
+      end
     end
 
     # Parses the given data with Yajl.

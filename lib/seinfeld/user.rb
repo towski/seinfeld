@@ -49,9 +49,7 @@ class Seinfeld
     # today - A Date instance representing today (default: Date.today).
     #
     # Returns nothing.
-    def update_progress(days = nil, today = Date.today)
-      Time.zone = time_zone || "UTC"
-      days    ||= Feed.fetch(login).committed_days
+    def update_progress(days, today = Date.today)
       days      = filter_existing_days(days)
       streaks   = [current_streak = Streak.new(streak_start, streak_end)]
 

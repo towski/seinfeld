@@ -82,7 +82,7 @@ namespace :seinfeld do
     else
       user = Seinfeld::User.find_by_login(ENV['USER'])
       if user
-        user.update_progress
+        Seinfeld::Updater.run(user)
       else
         raise "No user found for #{ENV['USER'].inspect}"
       end
@@ -99,7 +99,7 @@ end
 desc "cron task for keeping the CAN updated.  Run once every hour."
 task :cron => 'seinfeld:init' do
   Seinfeld::User.active.paginated_each do |user|
-    user.update_progress
+    Seinfeld::Updater.run(user)
   end
 end
 
