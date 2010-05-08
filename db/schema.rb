@@ -19,7 +19,6 @@ ActiveRecord::Schema.define(:version => 0) do
   create_table "seinfeld_users", :force => true do |t|
     t.string  "login",                :limit => 50
     t.string  "email",                :limit => 50
-    t.string  "last_entry_id",        :limit => 50
     t.integer "current_streak",                     :default => 0
     t.integer "longest_streak",                     :default => 0
     t.date    "streak_start"
