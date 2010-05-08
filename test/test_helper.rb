@@ -10,7 +10,7 @@ class ActiveSupport::TestCase
   FEED_PATH = File.join(File.dirname(__FILE__), 'feeds')
 
   def self.feed_data(feed)
-    IO.read File.join(FEED_PATH, "#{feed}.atom")
+    IO.read File.join(FEED_PATH, "#{feed}.json")
   end
 
   def feed_data(feed)
