@@ -2,6 +2,7 @@ class Seinfeld
   class User < ActiveRecord::Base
     has_many :progressions, :order => 'seinfeld_progressions.created_at', :dependent => :delete_all
 
+    scope :active,              where(:disabled => false)
     scope :best_current_streak, where('current_streak > 0').order('current_streak desc, login').limit(15)
     scope :best_alltime_streak, where('longest_streak > 0').order('longest_streak desc, login').limit(15)
 
@@ -16,7 +17,7 @@ class Seinfeld
     end
 
     def self.first_page(limit = 30, since = 0)
-      users = all(:order => 'id', :limit => 30, :conditions => ['id > ?', since])
+      users   = where('id > ?', since).order('id').limit(limit)
       users.blank? ? nil : users
     end
 
@@ -48,9 +49,7 @@ class Seinfeld
     # today - A Date instance representing today (default: Date.today).
     #
     # Returns nothing.
-    def update_progress(days = nil, today = Date.today)
-      Time.zone = time_zone || "UTC"
-      days    ||= Feed.fetch(login).committed_days
+    def update_progress(days, today = Date.today)
       days      = filter_existing_days(days)
       streaks   = [current_streak = Streak.new(streak_start, streak_end)]
 

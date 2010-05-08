@@ -27,7 +27,7 @@ class Seinfeld < ActiveRecord::Base
     attr_accessor :logger
   end
 
-  [:App, :User, :Progression, :Feed, :Streak, :CalendarHelper].each do |const|
+  [:App, :User, :Progression, :Feed, :Streak, :CalendarHelper, :Updater].each do |const|
     autoload const, "seinfeld/#{const.to_s.underscore}"
   end
 

@@ -78,13 +78,11 @@ namespace :seinfeld do
   desc "Update the calendar of USER"
   task :update => :init do
     if ENV['USER'].blank?
-      Seinfeld::User.paginated_each do |user|
-        user.update_progress
-      end
+      Rake::Task["cron"].invoke
     else
       user = Seinfeld::User.find_by_login(ENV['USER'])
       if user
-        user.update_progress
+        Seinfeld::Updater.run(user)
       else
         raise "No user found for #{ENV['USER'].inspect}"
       end
@@ -105,8 +103,8 @@ end
 
 desc "cron task for keeping the CAN updated.  Run once every hour."
 task :cron => 'seinfeld:init' do
-  Seinfeld::User.paginated_each do |user|
-    user.update_progress
+  Seinfeld::User.active.paginated_each do |user|
+    Seinfeld::Updater.run(user)
   end
 end
 
@@ -127,6 +125,13 @@ END
       class_name = migration_name.classify
       f << ERB.new(tmpl).result(binding)
     end
+  end
+
+  desc "Migrate the database through scripts in db/migrate and update db/schema.rb by invoking db:schema:dump. Target specific version with VERSION=x. Turn off output with VERBOSE=false."
+  task :migrate => 'seinfeld:init' do
+    ActiveRecord::Migration.verbose = ENV["VERBOSE"] ? ENV["VERBOSE"] == "true" : true
+    ActiveRecord::Migrator.migrate("db/migrate/", ENV["VERSION"] ? ENV["VERSION"].to_i : nil)
+    Rake::Task["db:schema:dump"].invoke
   end
 
   namespace :migrate do

@@ -2,14 +2,38 @@ require File.join(File.dirname(__FILE__), "test_helper")
 
 class UserTest < ActiveSupport::TestCase
   fixtures do
-    @newb = Seinfeld::User.create! :login => 'newb'
-    @user = Seinfeld::User.create! :login => 'user', 
+    @disabled = Seinfeld::User.create! :login => 'disabled', :disabled => true
+    @newb     = Seinfeld::User.create! :login => 'newb'
+    @user     = Seinfeld::User.create! :login => 'user', 
       :streak_start => Date.civil(2007, 12, 30), :streak_end => Date.civil(2007, 12, 31), :current_streak => 2,
       :longest_streak_start => Date.civil(2007, 12, 30), :longest_streak_end => Date.civil(2007, 12, 31), :longest_streak => 2
     @user.progressions.create!(:created_at => Date.civil(2007, 12, 30))
     @user.progressions.create!(:created_at => Date.civil(2007, 12, 31))
     Seinfeld::Progression.create! :user_id => @user.id+1
     @today = Date.civil(2008, 1, 3)
+  end
+
+  test "#first_page finds the first page of all users" do
+    assert_equal [@disabled, @newb], Seinfeld::User.first_page(2)
+    assert_equal [@user],            Seinfeld::User.first_page(2, @newb.id)
+    assert_nil                       Seinfeld::User.first_page(2, @user.id)
+  end
+
+  test "#first_page finds the first page of active users" do
+    assert_equal [@newb, @user], Seinfeld::User.active.first_page(2)
+    assert_nil                   Seinfeld::User.active.first_page(2, @user.id)
+  end
+
+  test "#paginated_each pages through available users" do
+    users = []
+    Seinfeld::User.paginated_each(2) { |u| users << u }
+    assert_equal [@disabled, @newb, @user], users
+  end
+
+  test "#paginated_each pages through active users" do
+    users = []
+    Seinfeld::User.active.paginated_each(2) { |u| users << u }
+    assert_equal [@newb, @user], users
   end
 
   test "#update_progress with newb, keeping the streak" do
