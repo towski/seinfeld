@@ -23,9 +23,10 @@ class Seinfeld
       url  = "http://github.com/#{login}.json"
       open(url) { |f| feed = new(login, f.read, url) }
       feed
-    rescue OpenURI::HTTPError => e
-      if e.message =~ /404/
-        nil
+    rescue Yajl::ParseError, OpenURI::HTTPError
+      # TODO: Raise Seinfeld::Feed::Error instead
+      if $!.message =~ /404/
+        nil # the user is missing, disable them
       else
         # some other error?
         new(login, "[]", url)

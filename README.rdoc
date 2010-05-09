@@ -1,6 +1,6 @@
 = Seinfeld Calendar
 
-Track your OSS Productivity with Github.
+Track your OSS Productivity with GitHub.
 
 http://lifehacker.com/software/motivation/jerry-seinfelds-productivity-secret-281626.php
 
@@ -8,8 +8,8 @@ http://lifehacker.com/software/motivation/jerry-seinfelds-productivity-secret-28
 
 Setup the initial database and start the application.
 
-  rake seinfeld:setup
-  ruby seinfeld_calendar.rb
+  rake db:schema:load
+  rackup config.ru
   
 Once you add a user, it will be accessible like so:
 
@@ -23,40 +23,7 @@ Update all progresses from GitHub, should be ran nightly.
 
   rake seinfeld:update USER=
 
-For development testing, use this command to reset and update your user
-  rake seinfeld:reset USER=technoweenie
-
-
-== Deployment
-
-My seinfeld.rb looks like this:
-
-  $: << File.join(File.dirname(__FILE__), 'lib')
-  require 'seinfeld/models'
-  DataMapper.setup :default, 'mysql://rickybobby:shakeandbake@localhost/seinfeld'
-  Seinfeld::User.github_login = 'rickybobby'
-  Seinfeld::User.github_password = 'shakeandbake'
-  
-My rackup.ru (for Passenger) looks like:
-
-  require 'rubygems'
-  require 'rack'
-  require 'sinatra'
-  
-  Sinatra::Application.default_options.update(
-    :run => false,
-    :env => :production,
-    :raise_errors => true
-  )
-  
-  require 'config'
-  require 'seinfeld_calendar'
-  
-  run Sinatra::Application
-
 == TODO
 
-* TIMEZONES
-* configurable db support
 * Gitorious support, etc
-* OAUTH
+* OAUTH2
