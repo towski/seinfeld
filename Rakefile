@@ -78,7 +78,10 @@ namespace :seinfeld do
   desc "Update the calendar of USER"
   task :update => :init do
     if ENV['USER'].blank?
-      Rake::Task["cron"].invoke
+      Seinfeld::User.active.paginated_each do |user|
+        feed = Seinfeld::Updater.run(user)
+        puts "#{user.login}#{' (disabled)' if user.disabled?} - #{feed.inspect}"
+      end
     else
       user = Seinfeld::User.find_by_login(ENV['USER'])
       if user

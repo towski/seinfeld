@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20100508173240) do
+ActiveRecord::Schema.define(:version => 20100509055024) do
 
   create_table "seinfeld_progressions", :force => true do |t|
     t.date    "created_at"
@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(:version => 20100508173240) do
 
   add_index "seinfeld_users", ["current_streak"], :name => "index_seinfeld_users_current_streak"
   add_index "seinfeld_users", ["disabled"], :name => "index_seinfeld_users_on_disabled"
+  add_index "seinfeld_users", ["login"], :name => "index_seinfeld_users_on_login", :unique => true
   add_index "seinfeld_users", ["longest_streak"], :name => "index_seinfeld_users_longest_streak"
 
 end
