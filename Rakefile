@@ -79,8 +79,12 @@ namespace :seinfeld do
   task :update => :init do
     if ENV['USER'].blank?
       Seinfeld::User.active.paginated_each do |user|
-        feed = Seinfeld::Updater.run(user)
-        puts "#{user.login}#{' (disabled)' if user.disabled?} - #{feed.inspect}"
+        begin
+          feed = Seinfeld::Updater.run(user)
+          puts "#{user.login}#{' (disabled)' if user.disabled?} - #{feed.inspect}"
+        rescue
+          puts "#{user.login}#{' (disabled)' if user.disabled?} - #{$!.class}: #{$!.inspect}"
+        end
       end
     else
       user = Seinfeld::User.find_by_login(ENV['USER'])
