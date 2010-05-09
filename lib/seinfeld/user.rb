@@ -2,6 +2,9 @@ class Seinfeld
   class User < ActiveRecord::Base
     has_many :progressions, :order => 'seinfeld_progressions.created_at', :dependent => :delete_all
 
+    validates_presence_of   :login
+    validates_uniqueness_of :login
+
     scope :active,              where(:disabled => false)
     scope :best_current_streak, where('current_streak > 0').order('current_streak desc, login').limit(15)
     scope :best_alltime_streak, where('longest_streak > 0').order('longest_streak desc, login').limit(15)
@@ -19,6 +22,10 @@ class Seinfeld
     def self.first_page(limit = 30, since = 0)
       users   = where('id > ?', since).order('id').limit(limit)
       users.blank? ? nil : users
+    end
+
+    def login=(s)
+      write_attribute :login, s.blank? ? nil : s.downcase
     end
 
     # Public: Queries a user's progress for a given month.

@@ -13,6 +13,10 @@ class UserTest < ActiveSupport::TestCase
     @today = Date.civil(2008, 1, 3)
   end
 
+  test "downcases login" do
+    assert_equal 'bob', Seinfeld::User.new(:login => 'BoB').login
+  end
+
   test "#first_page finds the first page of all users" do
     assert_equal [@disabled, @newb], Seinfeld::User.first_page(2)
     assert_equal [@user],            Seinfeld::User.first_page(2, @newb.id)
