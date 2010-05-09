@@ -18,6 +18,7 @@ class Seinfeld
         @user.disabled = true
         @user.save!
       end
+      feed
     end
   end
 end

@@ -35,9 +35,15 @@ class Seinfeld
     end
 
     get '/~:name/widget' do
-      cache_for 1.hour
-      @user = Seinfeld::User.where(:login => params[:name]).first
-      haml :widget
+      if params[:name].present?
+        @user = Seinfeld::User.find_by_login(params[:name].downcase)
+      end
+      if @user
+        cache_for 1.hour
+        haml :widget
+      else
+        redirect '/'
+      end
     end
 
     get '/~:name' do
@@ -76,11 +82,13 @@ class Seinfeld
       end
 
       def get_user_and_progressions(extra = 0, name = params[:name])
+        return Set.new if name.blank?
+
         [:year, :month].each do |key|
           value       = params[key].to_i
           params[key] = value.zero? ? Date.today.send(key) : value
         end
-        if @user = Seinfeld::User.where(:login => name).first
+        if @user = Seinfeld::User.find_by_login(name.downcase)
           Time.zone    = @user.time_zone || "UTC"
           progressions = @user.progress_for(params[:year], params[:month], extra)
         end
@@ -88,9 +96,9 @@ class Seinfeld
       end
 
       def show_user_calendar
-        cache_for 5.minutes
         @progressions = get_user_and_progressions(6)
         if @user
+          cache_for 5.minutes
           haml :show
         else
           redirect "/"
