@@ -37,7 +37,7 @@ namespace :seinfeld do
   task :show => :init do
     raise "Need USER=" if ENV['USER'].blank?
     u = Seinfeld::User.find_by_login(ENV['USER'])
-    puts "#{u.login}#{" #{u.time_zone}" if u.time_zone}"
+    puts "#{u.login}#{' (disabled)' if u.disabled?}#{" #{u.time_zone}" if u.time_zone}"
     puts "Current Streak: #{u.current_streak} #{u.streak_start} => #{u.streak_end}"
     puts "Longest Streak: #{u.longest_streak} #{u.longest_streak_start} => #{u.longest_streak_end}"
   end
