@@ -1,0 +1,41 @@
+<html>
+  <head>
+    <title>{{ html_title }}</title>
+    <link rel="icon" type="image/png" href="/images/apple-touch-icon.png" sizes="48x48" />
+    <link rel="stylesheet" type="text/css" href="/styles/main.css" />
+    <script type="text/javascript" src="/javascripts/mootools.js"></script>
+    <script type="text/javascript" src="/javascripts/application.js"></script>
+  </head>
+  <body>
+    <div class="title">{{{ page_title }}}</div>
+    {{{ yield }}}
+    <div id="main">
+      {{#user}}
+      <div id="stats">
+        <div class="current_streak">
+          <span class="type">current streak</span>
+          <span class="num">
+            {{ user_current_streak }}
+            <span class="desc">days</span>
+          </span>
+        </div>
+        <div class="longest_streak">
+          <a href="{{ user_longest_streak_url }}">
+            <span class="type">longest streak</span>
+            <span class="num">
+              {{ user_longest_streak }}
+              <span class="desc">days</span>
+            </span>
+          </a>
+        </div>
+      </div>
+      {{/user}}
+      <div id="content" class="footnote">
+        <a href="http://calendaraboutnothing.com">Calendar About Nothing</a>
+        by <a href="http://techno-weenie.net">rick</a> and 
+        <a href="http://warpspire.com/">kyle</a> / 
+        <a href="http://github.com">GitHub</a>
+      </div>
+    </div>
+  </body>
+</html>

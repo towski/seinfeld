@@ -1,9 +1,10 @@
 builder
 haml
 memcache-client
-rest-client
 yajl-ruby
 tzinfo
 activesupport --version '3.0.0.beta3'
 arel
 activerecord --version '3.0.0.beta3'
+oauth2
+mustache

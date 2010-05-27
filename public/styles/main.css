@@ -10,6 +10,9 @@ li, dd { margin-left:5%; }
 fieldset { padding: .5em; }
 select option{ padding:0 5px; }
 
+h1 { font-size: 18px; }
+h2 { font-size: 14px; }
+
 .access{ display:none; } /* For accessibility related elements */
 .clear{ clear:both; height:0px; font-size:0px; line-height:0px; overflow:hidden; }
 a{ outline:none; }

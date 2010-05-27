@@ -25,7 +25,19 @@ class Seinfeld < ActiveRecord::Base
     attr_accessor :log_path
 
     attr_accessor :logger
+
+    # Hash options for GitHub OAuth
+    # :client_id - String OAuth2 Client ID hash.
+    # :secret    - String OAuth2 Secret hash.
+    attr_accessor :oauth
   end
+
+  self.oauth = {
+    :site              => "https://github.com",
+    :authorize_path    => "/login/oauth/authorize",
+    :access_token_path => "/login/oauth/access_token",
+    :client_id         => ENV['OAUTH_CLIENT_ID'],
+    :secret            => ENV['OAUTH_SECRET']}
 
   [:App, :User, :Progression, :Feed, :Streak, :CalendarHelper, :Updater].each do |const|
     autoload const, "seinfeld/#{const.to_s.underscore}"

@@ -1,0 +1,22 @@
+<div class="subtitle">Tracking Open Source Contributions</div>
+
+<div id="borderedMain">
+  <div id="content">
+{{#anon}}
+    <h1>Are you ready?</h1>
+    <form action="/create" method="post">
+      <p>
+        You are just <em>one step away</em> from joining an amazing community of
+        <a href="http://github.com">GitHub</a> open source developers.  Click this,
+        and CAN will start tracking your daily open source progress.
+      </p>
+      <p><input type="submit" value="Awesome" /></p>
+    </form>
+{{/anon}}
+
+{{#user}}
+    <h2>Hey, you already have a Calendar.</h2>
+    <p><a href="/~{{ login }}">Rock on.</a></p>
+{{/user}}
+  </div>
+</div>
