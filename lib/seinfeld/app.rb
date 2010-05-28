@@ -1,8 +1,18 @@
 require 'sinatra/base'
-require 'json'
+require 'mustache/sinatra'
+require 'oauth2'
+require 'yajl'
 
 class Seinfeld
+  module Views
+    [:Layout, :Auth].each do |const|
+      autoload const, "seinfeld/views/#{const.to_s.underscore}"
+    end
+  end
+
   class App < Sinatra::Base
+    register Mustache::Sinatra
+
     error do
       e = request.env['sinatra.error']
     end
@@ -13,7 +23,15 @@ class Seinfeld
 
     set :root,     Seinfeld.root
     set :app_file, __FILE__
+    enable :sessions
     enable :static
+
+    set :mustache, {
+      :namespace => Seinfeld,
+      :templates => "#{Seinfeld.root}/lib/seinfeld/templates",
+      :views     => "#{Seinfeld.root}/lib/seinfeld/views"
+    }
+
     configure :development do
       enable  :show_exceptions, :dump_errors
       disable :raise_errors, :clean_trace
@@ -72,6 +90,37 @@ class Seinfeld
 
     get '/group/:names/:year/:month' do
       show_group_calendar
+    end
+
+    get '/edit' do
+      if session[:user].blank?
+        url = oauth.authorize_url(
+          :redirect_uri => oauth_redirect_url)
+        redirect url
+      else
+        @login = session[:user]['login']
+        @user  = Seinfeld::User.find_by_login(@login)
+        mustache :auth
+      end
+    end
+
+    post '/create' do
+      @user  = Seinfeld::User.find_or_create_by_login(session[:user]['login'])
+      Seinfeld::Updater.run(@user)
+      redirect "/~#{@user.login}"
+    end
+
+    get '/auth/callback' do
+      begin
+        api  = oauth.get_access_token(params[:code], :redirect_uri => oauth_redirect_url)
+        data = Yajl::Parser.parse(api.get('/api/v2/json/user/show'))
+        session[:user] = data['user']
+        redirect "/edit"
+      rescue Yajl::ParseError
+        %(<p>#{$!}</p>)
+      rescue OAuth2::HTTPError
+        %(<p>Outdated ?code=#{params[:code]}:</p><p>#{$!}</p><p><a href="/auth">Retry</a></p>)
+      end
     end
 
     helpers do
@@ -163,6 +212,23 @@ class Seinfeld
       def cache_for(time)
         response['Cache-Control'] = "public, max-age=#{time.to_i}"
       end
+    end
+
+    def oauth
+      @oauth ||= begin
+        opt = Seinfeld.oauth
+        OAuth2::Client.new(opt[:client_id], opt[:secret], :site => opt[:site],
+          :authorize_path    => opt[:authorize_path], 
+          :access_token_path => opt[:access_token_path]).
+          web_server
+      end
+    end
+
+    def oauth_redirect_url
+      uri = URI.parse(request.url)
+      uri.path  = '/auth/callback'
+      uri.query = nil
+      uri.to_s
     end
   end
 end
