@@ -87,13 +87,17 @@ namespace :seinfeld do
         end
       end
     else
-      user = Seinfeld::User.find_by_login(ENV['USER'])
-      if user
+      if user = Seinfeld::User.find_by_login(ENV['USER'])
         Seinfeld::Updater.run(user)
       else
         raise "No user found for #{ENV['USER'].inspect}"
       end
     end
+  end
+
+  desc "Clear progress of all users"
+  task :clear_all => :init do
+    Seinfeld::User.paginated_each { |u| u.clear_progress }
   end
 
   desc "Clear progress of USER."
