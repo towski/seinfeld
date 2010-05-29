@@ -19,7 +19,7 @@ task :default => 'test'
 
 desc "Open an irb session preloaded with this library"
 task :console do
-  sh "irb -rubygems -r ./lib/seinfeld.rb"
+  sh "irb -rubygems -r ./lib/seinfeld/console.rb"
 end
 
 namespace :seinfeld do
