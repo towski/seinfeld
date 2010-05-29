@@ -72,7 +72,9 @@ namespace :seinfeld do
   desc "Remove a USER from the database."
   task :drop => :init do
     raise "Need USER=" if ENV['USER'].to_s.size.zero?
-    Seinfeld::User.delete_all(:login => ENV['USER'])
+    if user = Seinfeld::User.find_by_login(ENV['USER'])
+      user.destroy
+    end
   end
   
   desc "Update the calendar of USER"
