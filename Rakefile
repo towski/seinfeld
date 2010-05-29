@@ -81,11 +81,12 @@ namespace :seinfeld do
   task :update => :init do
     if ENV['USER'].blank?
       Seinfeld::User.active.paginated_each do |user|
+        header = "#{user.login}#{' (disabled)' if user.disabled?} - "
         begin
           feed = Seinfeld::Updater.run(user)
-          puts "#{user.login}#{' (disabled)' if user.disabled?} - #{feed.inspect}"
+          puts header << feed.inspect
         rescue
-          puts "#{user.login}#{' (disabled)' if user.disabled?} - #{$!.class}: #{$!.inspect}"
+          puts header << "#{$!.class}: #{$!.inspect}"
         end
       end
     else
