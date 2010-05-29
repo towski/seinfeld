@@ -1,6 +1,6 @@
 require 'time'
-require 'open-uri'
 require 'yajl'
+require 'faraday'
 
 class Seinfeld
   class Feed
@@ -13,17 +13,22 @@ class Seinfeld
     # The String url that the atom feed was fetched from (default: :direct)
     attr_reader :url
 
+    def self.connection
+      @connection ||= Faraday::Connection.new do |b|
+        b.adapter :typhoeus
+      end
+    end
+
     # Public: Downloads a user's public feed from GitHub.
     #
     # login - String login name from GitHub.
     # 
     # Returns Seinfeld::Feed instance.
     def self.fetch(login)
-      feed = nil
       url  = "http://github.com/#{login}.json"
-      open(url) { |f| feed = new(login, f.read, url) }
-      feed
-    rescue Yajl::ParseError, OpenURI::HTTPError
+      resp = connection.get(url)
+      new(login, resp.body, url)
+    rescue Yajl::ParseError, Faraday::Error::ClientError
       # TODO: Raise Seinfeld::Feed::Error instead
       if $!.message =~ /404/
         nil # the user is missing, disable them
