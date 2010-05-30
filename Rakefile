@@ -72,24 +72,30 @@ namespace :seinfeld do
   desc "Remove a USER from the database."
   task :drop => :init do
     raise "Need USER=" if ENV['USER'].to_s.size.zero?
-    Seinfeld::User.delete_all(:login => ENV['USER'])
+    if user = Seinfeld::User.find_by_login(ENV['USER'])
+      user.destroy
+    end
   end
   
   desc "Update the calendar of USER"
   task :update => :init do
+    update_user = lambda do |user|
+      header = "#{user.login}#{' (disabled)' if user.disabled?} - "
+      begin
+        feed = Seinfeld::Updater.run(user)
+        puts header << feed.inspect
+      rescue
+        puts header << "#{$!.class}: #{$!.inspect}"
+      end
+    end
+
     if ENV['USER'].blank?
       Seinfeld::User.active.paginated_each do |user|
-        begin
-          feed = Seinfeld::Updater.run(user)
-          puts "#{user.login}#{' (disabled)' if user.disabled?} - #{feed.inspect}"
-        rescue
-          puts "#{user.login}#{' (disabled)' if user.disabled?} - #{$!.class}: #{$!.inspect}"
-        end
+        update_user.call(user)
       end
     else
-      user = Seinfeld::User.find_by_login(ENV['USER'])
-      if user
-        Seinfeld::Updater.run(user)
+      if user = Seinfeld::User.find_by_login(ENV['USER'])
+        update_user.call(user)
       else
         raise "No user found for #{ENV['USER'].inspect}"
       end

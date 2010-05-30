@@ -4,6 +4,12 @@ require 'faraday'
 
 class Seinfeld
   class Feed
+    class << self
+      attr_accessor :user_agent
+      attr_writer   :connection
+    end
+    self.user_agent = 'Calendar About Nothing: http://github.com/technoweenie/seinfeld'
+
     # A Array of Hashes of the parsed event JSON.
     attr_reader :items
 
@@ -13,9 +19,14 @@ class Seinfeld
     # The String url that the atom feed was fetched from (default: :direct)
     attr_reader :url
 
+    # Returned ETag from the response.
+    attr_accessor :etag
+
     def self.connection
-      @connection ||= Faraday::Connection.new do |b|
-        b.adapter :typhoeus
+      @connection ||= Faraday::Connection.new(
+          :headers => {'User-Agent' => user_agent}
+        ) do |b|
+          b.adapter :typhoeus
       end
     end
 
@@ -25,10 +36,12 @@ class Seinfeld
     # 
     # Returns Seinfeld::Feed instance.
     def self.fetch(login)
-      url  = "http://github.com/#{login}.json"
-      resp = connection.get(url)
-      new(login, resp.body, url)
+      user = login.is_a?(User) ? login : User.new(:login => login.to_s)
+      url  = "http://github.com/#{user.login}.json"
+      resp = connection.get(url, 'If-None-Match' => user.etag)
+      new(login, resp, url)
     rescue Yajl::ParseError, Faraday::Error::ClientError
+      puts $!
       # TODO: Raise Seinfeld::Feed::Error instead
       if $!.message =~ /404/
         nil # the user is missing, disable them
@@ -45,10 +58,16 @@ class Seinfeld
     # url   - String url that was used.  (default: :direct)
     #
     # Returns Seinfeld::Feed.
-    def initialize(login, data, url = :direct)
+    def initialize(login, data, url = nil)
       @login = login.to_s
-      @url   = url
-      @items = Yajl::Parser.parse(data)
+      if data.respond_to?(:body)
+        @etag = data.headers['etag']
+        data  = data.body.to_s
+      else
+        data = data.to_s
+      end
+      @url ||= :direct
+      @items = Yajl::Parser.parse(data) || []
     end
 
     # Public: Scans the parsed atom entries and pulls out all committed days.
