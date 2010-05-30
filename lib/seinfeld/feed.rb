@@ -36,8 +36,9 @@ class Seinfeld
     # 
     # Returns Seinfeld::Feed instance.
     def self.fetch(login)
-      url  = "http://github.com/#{login}.json"
-      resp = connection.get(url)
+      user = login.is_a?(User) ? login : User.new(:login => login.to_s)
+      url  = "http://github.com/#{user.login}.json"
+      resp = connection.get(url, 'If-None-Match' => user.etag)
       new(login, resp, url)
     rescue Yajl::ParseError, Faraday::Error::ClientError
       puts $!
@@ -61,12 +62,12 @@ class Seinfeld
       @login = login.to_s
       if data.respond_to?(:body)
         @etag = data.headers['etag']
-        data  = data.body
+        data  = data.body.to_s
       else
         data = data.to_s
       end
       @url ||= :direct
-      @items = Yajl::Parser.parse(data)
+      @items = Yajl::Parser.parse(data) || []
     end
 
     # Public: Scans the parsed atom entries and pulls out all committed days.

@@ -79,19 +79,23 @@ namespace :seinfeld do
   
   desc "Update the calendar of USER"
   task :update => :init do
+    update_user = lambda do |user|
+      header = "#{user.login}#{' (disabled)' if user.disabled?} - "
+      begin
+        feed = Seinfeld::Updater.run(user)
+        puts header << feed.inspect
+      rescue
+        puts header << "#{$!.class}: #{$!.inspect}"
+      end
+    end
+
     if ENV['USER'].blank?
       Seinfeld::User.active.paginated_each do |user|
-        header = "#{user.login}#{' (disabled)' if user.disabled?} - "
-        begin
-          feed = Seinfeld::Updater.run(user)
-          puts header << feed.inspect
-        rescue
-          puts header << "#{$!.class}: #{$!.inspect}"
-        end
+        update_user.call(user)
       end
     else
       if user = Seinfeld::User.find_by_login(ENV['USER'])
-        Seinfeld::Updater.run(user)
+        update_user.call(user)
       else
         raise "No user found for #{ENV['USER'].inspect}"
       end

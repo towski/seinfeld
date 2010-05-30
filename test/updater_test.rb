@@ -23,6 +23,7 @@ class UpdaterTest < ActiveSupport::TestCase
 
   test "saves latest ETag from feed" do
     assert_equal 'abc', @feed.etag
+    assert_equal @feed.etag, @user.reload.etag
   end
 
   test "parses atom entries" do

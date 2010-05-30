@@ -13,7 +13,8 @@ class Seinfeld
     def run(today = Date.today)
       today   ||= Date.today
       Time.zone = @user.time_zone || "UTC"
-      if feed = Feed.fetch(@user.login)
+      if feed = Feed.fetch(@user)
+        @user.etag = feed.etag
         @user.update_progress(feed.committed_days, today)
       else
         @user.disabled = true
