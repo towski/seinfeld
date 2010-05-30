@@ -20,7 +20,6 @@ end
 
 Seinfeld.configure('test')
 Seinfeld.logger.level = Logger::DEBUG
-Time.zone = 'Pacific Time (US & Canada)'
 
 begin
   require 'ruby-debug'
