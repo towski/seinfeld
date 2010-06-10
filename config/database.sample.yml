@@ -13,6 +13,9 @@ development:
   password:
   host: localhost
 test:
-  adapter: sqlite3
+  adapter: mysql
   encoding: utf8
-  database: ":memory:"
+  database: seinfeld_test
+  username: root
+  password:
+  host: localhost
