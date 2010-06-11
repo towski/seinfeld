@@ -1,0 +1,566 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+
+  <title>Latest Revisions by towski</title>
+
+    <id>tag:launchpad.net,2008-07-19:/code/~towski</id>
+    <link rel="self"
+          href="http://feeds.launchpad.net/~towski/revisions.atom"/>
+    <link rel="alternate"
+          href="https://code.launchpad.net/~towski"/>
+  <logo>https://launchpad.net/@@/branch</logo>
+  <icon>https://launchpad.net/@@/launchpad</icon>
+    <updated>2010-05-22T07:14:15.622938+00:00</updated>
+
+  <entry>
+      
+    <title type="text">[market] r11  allow people to specify ordering</title>
+    
+    <published>2010-05-22T07:14:15.622938+00:00</published>
+    <updated>2010-05-22T07:13:17.524000+00:00</updated>
+    <id>tag:launchpad.net,2010-05-22:/revision/towski@gmail.com-20100522071317-aezifye74tyw34p5</id>
+    <author>
+      <name>towski</name>
+      <uri>https://code.launchpad.net/~towski</uri>
+      
+    </author>
+    <content type="html">&lt;div xmlns="http://www.w3.org/1999/xhtml"&gt;
+&lt;table style="border: 0; padding: 2px"&gt;
+&lt;tr&gt;
+&lt;th&gt;Author:&lt;/th&gt;
+&lt;td&gt;
+&lt;a href="https://launchpad.nethttps://launchpad.net/~towski"&gt;
+            towski
+          &lt;/a&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;th&gt;Date:&lt;/th&gt;
+&lt;td&gt;2010-05-22 07:13:17 UTC&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;th&gt;Branch:&lt;/th&gt;
+&lt;td&gt;
+&lt;a href="https://code.launchpad.net/~towski/+junk/market"&gt;
+&lt;img src="https://launchpad.net/@@/branch" /&gt;
+          lp:~towski/+junk/market
+        &lt;/a&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;th&gt;Revno:&lt;/th&gt;
+&lt;td&gt;11&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;th&gt;Log message:&lt;/th&gt;
+&lt;td&gt;
+&lt;p&gt;allow people to specify ordering&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+</content>
+
+  </entry>
+  <entry>
+      
+    <title type="text">[market] r10  refactor search jobs, Hash#only helper method</title>
+    
+    <published>2010-05-22T06:11:16.551471+00:00</published>
+    <updated>2010-05-22T06:10:18.603000+00:00</updated>
+    <id>tag:launchpad.net,2010-05-22:/revision/towski@gmail.com-20100522061018-1dv8q6bt6sjf8m99</id>
+    <author>
+      <name>towski</name>
+      <uri>https://code.launchpad.net/~towski</uri>
+      
+    </author>
+    <content type="html">&lt;div xmlns="http://www.w3.org/1999/xhtml"&gt;
+&lt;table style="border: 0; padding: 2px"&gt;
+&lt;tr&gt;
+&lt;th&gt;Author:&lt;/th&gt;
+&lt;td&gt;
+&lt;a href="https://launchpad.nethttps://launchpad.net/~towski"&gt;
+            towski
+          &lt;/a&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;th&gt;Date:&lt;/th&gt;
+&lt;td&gt;2010-05-22 06:10:18 UTC&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;th&gt;Branch:&lt;/th&gt;
+&lt;td&gt;
+&lt;a href="https://code.launchpad.net/~towski/+junk/market"&gt;
+&lt;img src="https://launchpad.net/@@/branch" /&gt;
+          lp:~towski/+junk/market
+        &lt;/a&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;th&gt;Revno:&lt;/th&gt;
+&lt;td&gt;10&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;th&gt;Log message:&lt;/th&gt;
+&lt;td&gt;
+&lt;p&gt;refactor search jobs, Hash#only helper method&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+</content>
+
+  </entry>
+  <entry>
+      
+    <title type="text">[market] r9  truncate and escape html</title>
+    
+    <published>2010-05-22T04:06:27.224061+00:00</published>
+    <updated>2010-05-22T04:05:25.916000+00:00</updated>
+    <id>tag:launchpad.net,2010-05-22:/revision/towski@gmail.com-20100522040525-fsd2cty2xo3tbn4d</id>
+    <author>
+      <name>towski</name>
+      <uri>https://code.launchpad.net/~towski</uri>
+      
+    </author>
+    <content type="html">&lt;div xmlns="http://www.w3.org/1999/xhtml"&gt;
+&lt;table style="border: 0; padding: 2px"&gt;
+&lt;tr&gt;
+&lt;th&gt;Author:&lt;/th&gt;
+&lt;td&gt;
+&lt;a href="https://launchpad.nethttps://launchpad.net/~towski"&gt;
+            towski
+          &lt;/a&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;th&gt;Date:&lt;/th&gt;
+&lt;td&gt;2010-05-22 04:05:25 UTC&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;th&gt;Branch:&lt;/th&gt;
+&lt;td&gt;
+&lt;a href="https://code.launchpad.net/~towski/+junk/market"&gt;
+&lt;img src="https://launchpad.net/@@/branch" /&gt;
+          lp:~towski/+junk/market
+        &lt;/a&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;th&gt;Revno:&lt;/th&gt;
+&lt;td&gt;9&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;th&gt;Log message:&lt;/th&gt;
+&lt;td&gt;
+&lt;p&gt;truncate and escape html&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+</content>
+
+  </entry>
+  <entry>
+      
+    <title type="text">[market] r8  add a popularity method and query parsing</title>
+    
+    <published>2010-05-22T03:55:35.449912+00:00</published>
+    <updated>2010-05-22T03:55:01.846000+00:00</updated>
+    <id>tag:launchpad.net,2010-05-22:/revision/towski@gmail.com-20100522035501-pytaozvb1apgkt3y</id>
+    <author>
+      <name>towski</name>
+      <uri>https://code.launchpad.net/~towski</uri>
+      
+    </author>
+    <content type="html">&lt;div xmlns="http://www.w3.org/1999/xhtml"&gt;
+&lt;table style="border: 0; padding: 2px"&gt;
+&lt;tr&gt;
+&lt;th&gt;Author:&lt;/th&gt;
+&lt;td&gt;
+&lt;a href="https://launchpad.nethttps://launchpad.net/~towski"&gt;
+            towski
+          &lt;/a&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;th&gt;Date:&lt;/th&gt;
+&lt;td&gt;2010-05-22 03:55:01 UTC&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;th&gt;Branch:&lt;/th&gt;
+&lt;td&gt;
+&lt;a href="https://code.launchpad.net/~towski/+junk/market"&gt;
+&lt;img src="https://launchpad.net/@@/branch" /&gt;
+          lp:~towski/+junk/market
+        &lt;/a&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;th&gt;Revno:&lt;/th&gt;
+&lt;td&gt;8&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;th&gt;Log message:&lt;/th&gt;
+&lt;td&gt;
+&lt;p&gt;add a popularity method and query parsing&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+</content>
+
+  </entry>
+  <entry>
+      
+    <title type="text">[market] r7  add search limiting, avoid github search result duplication,...</title>
+    
+    <published>2010-05-22T02:25:26.898536+00:00</published>
+    <updated>2010-05-22T02:24:23.953000+00:00</updated>
+    <id>tag:launchpad.net,2010-05-22:/revision/towski@gmail.com-20100522022423-hd1zp67g3p616v5y</id>
+    <author>
+      <name>towski</name>
+      <uri>https://code.launchpad.net/~towski</uri>
+      
+    </author>
+    <content type="html">&lt;div xmlns="http://www.w3.org/1999/xhtml"&gt;
+&lt;table style="border: 0; padding: 2px"&gt;
+&lt;tr&gt;
+&lt;th&gt;Author:&lt;/th&gt;
+&lt;td&gt;
+&lt;a href="https://launchpad.nethttps://launchpad.net/~towski"&gt;
+            towski
+          &lt;/a&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;th&gt;Date:&lt;/th&gt;
+&lt;td&gt;2010-05-22 02:24:23 UTC&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;th&gt;Branch:&lt;/th&gt;
+&lt;td&gt;
+&lt;a href="https://code.launchpad.net/~towski/+junk/market"&gt;
+&lt;img src="https://launchpad.net/@@/branch" /&gt;
+          lp:~towski/+junk/market
+        &lt;/a&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;th&gt;Revno:&lt;/th&gt;
+&lt;td&gt;7&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;th&gt;Log message:&lt;/th&gt;
+&lt;td&gt;
+&lt;p&gt;add search limiting, avoid github search result duplication, and an increment function with ajax for clicks&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+</content>
+
+  </entry>
+  <entry>
+      
+    <title type="text">[market] r6  use the repositories key for api data</title>
+    
+    <published>2010-05-21T23:35:27.801088+00:00</published>
+    <updated>2010-05-21T23:33:57.291000+00:00</updated>
+    <id>tag:launchpad.net,2010-05-21:/revision/towski@gmail.com-20100521233357-i6knte51v4wqem0l</id>
+    <author>
+      <name>towski</name>
+      <uri>https://code.launchpad.net/~towski</uri>
+      
+    </author>
+    <content type="html">&lt;div xmlns="http://www.w3.org/1999/xhtml"&gt;
+&lt;table style="border: 0; padding: 2px"&gt;
+&lt;tr&gt;
+&lt;th&gt;Author:&lt;/th&gt;
+&lt;td&gt;
+&lt;a href="https://launchpad.nethttps://launchpad.net/~towski"&gt;
+            towski
+          &lt;/a&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;th&gt;Date:&lt;/th&gt;
+&lt;td&gt;2010-05-21 23:33:57 UTC&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;th&gt;Branch:&lt;/th&gt;
+&lt;td&gt;
+&lt;a href="https://code.launchpad.net/~towski/+junk/market"&gt;
+&lt;img src="https://launchpad.net/@@/branch" /&gt;
+          lp:~towski/+junk/market
+        &lt;/a&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;th&gt;Revno:&lt;/th&gt;
+&lt;td&gt;6&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;th&gt;Log message:&lt;/th&gt;
+&lt;td&gt;
+&lt;p&gt;use the repositories key for api data&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+</content>
+
+  </entry>
+  <entry>
+      
+    <title type="text">[market] r5  Add empty views and api tests to create job and query</title>
+    
+    <published>2010-05-21T22:55:32.058028+00:00</published>
+    <updated>2010-05-21T22:54:38.331000+00:00</updated>
+    <id>tag:launchpad.net,2010-05-21:/revision/towski@gmail.com-20100521225438-60jzwojwzon9vvyk</id>
+    <author>
+      <name>towski</name>
+      <uri>https://code.launchpad.net/~towski</uri>
+      
+    </author>
+    <content type="html">&lt;div xmlns="http://www.w3.org/1999/xhtml"&gt;
+&lt;table style="border: 0; padding: 2px"&gt;
+&lt;tr&gt;
+&lt;th&gt;Author:&lt;/th&gt;
+&lt;td&gt;
+&lt;a href="https://launchpad.nethttps://launchpad.net/~towski"&gt;
+            towski
+          &lt;/a&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;th&gt;Date:&lt;/th&gt;
+&lt;td&gt;2010-05-21 22:54:38 UTC&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;th&gt;Branch:&lt;/th&gt;
+&lt;td&gt;
+&lt;a href="https://code.launchpad.net/~towski/+junk/market"&gt;
+&lt;img src="https://launchpad.net/@@/branch" /&gt;
+          lp:~towski/+junk/market
+        &lt;/a&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;th&gt;Revno:&lt;/th&gt;
+&lt;td&gt;5&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;th&gt;Log message:&lt;/th&gt;
+&lt;td&gt;
+&lt;p&gt;Add empty views and api tests to create job and query&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+</content>
+
+  </entry>
+  <entry>
+      
+    <title type="text">[market] r4  add a basic job and search result test</title>
+    
+    <published>2010-05-21T22:22:25.836832+00:00</published>
+    <updated>2010-05-21T22:21:04.508000+00:00</updated>
+    <id>tag:launchpad.net,2010-05-21:/revision/towski@gmail.com-20100521222104-38c1vvlo5igc6h1e</id>
+    <author>
+      <name>towski</name>
+      <uri>https://code.launchpad.net/~towski</uri>
+      
+    </author>
+    <content type="html">&lt;div xmlns="http://www.w3.org/1999/xhtml"&gt;
+&lt;table style="border: 0; padding: 2px"&gt;
+&lt;tr&gt;
+&lt;th&gt;Author:&lt;/th&gt;
+&lt;td&gt;
+&lt;a href="https://launchpad.nethttps://launchpad.net/~towski"&gt;
+            towski
+          &lt;/a&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;th&gt;Date:&lt;/th&gt;
+&lt;td&gt;2010-05-21 22:21:04 UTC&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;th&gt;Branch:&lt;/th&gt;
+&lt;td&gt;
+&lt;a href="https://code.launchpad.net/~towski/+junk/market"&gt;
+&lt;img src="https://launchpad.net/@@/branch" /&gt;
+          lp:~towski/+junk/market
+        &lt;/a&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;th&gt;Revno:&lt;/th&gt;
+&lt;td&gt;4&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;th&gt;Log message:&lt;/th&gt;
+&lt;td&gt;
+&lt;p&gt;add a basic job and search result test&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+</content>
+
+  </entry>
+  <entry>
+      
+    <title type="text">[market] r3  add basic structure</title>
+    
+    <published>2010-05-21T19:16:17.771325+00:00</published>
+    <updated>2010-05-21T19:15:36.653000+00:00</updated>
+    <id>tag:launchpad.net,2010-05-21:/revision/towski@gmail.com-20100521191536-i0uyqzcnmrqjxxhe</id>
+    <author>
+      <name>towski</name>
+      <uri>https://code.launchpad.net/~towski</uri>
+      
+    </author>
+    <content type="html">&lt;div xmlns="http://www.w3.org/1999/xhtml"&gt;
+&lt;table style="border: 0; padding: 2px"&gt;
+&lt;tr&gt;
+&lt;th&gt;Author:&lt;/th&gt;
+&lt;td&gt;
+&lt;a href="https://launchpad.nethttps://launchpad.net/~towski"&gt;
+            towski
+          &lt;/a&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;th&gt;Date:&lt;/th&gt;
+&lt;td&gt;2010-05-21 19:15:36 UTC&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;th&gt;Branch:&lt;/th&gt;
+&lt;td&gt;
+&lt;a href="https://code.launchpad.net/~towski/+junk/market"&gt;
+&lt;img src="https://launchpad.net/@@/branch" /&gt;
+          lp:~towski/+junk/market
+        &lt;/a&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;th&gt;Revno:&lt;/th&gt;
+&lt;td&gt;3&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;th&gt;Log message:&lt;/th&gt;
+&lt;td&gt;
+&lt;p&gt;add basic structure&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+</content>
+
+  </entry>
+  <entry>
+      
+    <title type="text">[market] r2  add sinatra</title>
+    
+    <published>2010-05-21T18:16:31.021595+00:00</published>
+    <updated>2010-05-21T17:55:54.350000+00:00</updated>
+    <id>tag:launchpad.net,2010-05-21:/revision/towski@gmail.com-20100521175554-8dyl1bwbr5jqjsnw</id>
+    <author>
+      <name>towski</name>
+      <uri>https://code.launchpad.net/~towski</uri>
+      
+    </author>
+    <content type="html">&lt;div xmlns="http://www.w3.org/1999/xhtml"&gt;
+&lt;table style="border: 0; padding: 2px"&gt;
+&lt;tr&gt;
+&lt;th&gt;Author:&lt;/th&gt;
+&lt;td&gt;
+&lt;a href="https://launchpad.nethttps://launchpad.net/~towski"&gt;
+            towski
+          &lt;/a&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;th&gt;Date:&lt;/th&gt;
+&lt;td&gt;2010-05-21 17:55:54 UTC&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;th&gt;Branch:&lt;/th&gt;
+&lt;td&gt;
+&lt;a href="https://code.launchpad.net/~towski/+junk/market"&gt;
+&lt;img src="https://launchpad.net/@@/branch" /&gt;
+          lp:~towski/+junk/market
+        &lt;/a&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;th&gt;Revno:&lt;/th&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;th&gt;Log message:&lt;/th&gt;
+&lt;td&gt;
+&lt;p&gt;add sinatra&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+</content>
+
+  </entry>
+  <entry>
+      
+    <title type="text">[market] r1  initial</title>
+    
+    <published>2010-05-21T18:16:31.021595+00:00</published>
+    <updated>2010-05-21T17:54:51.174000+00:00</updated>
+    <id>tag:launchpad.net,2010-05-21:/revision/towski@gmail.com-20100521175451-649p1gi20nyx471h</id>
+    <author>
+      <name>towski</name>
+      <uri>https://code.launchpad.net/~towski</uri>
+      
+    </author>
+    <content type="html">&lt;div xmlns="http://www.w3.org/1999/xhtml"&gt;
+&lt;table style="border: 0; padding: 2px"&gt;
+&lt;tr&gt;
+&lt;th&gt;Author:&lt;/th&gt;
+&lt;td&gt;
+&lt;a href="https://launchpad.nethttps://launchpad.net/~towski"&gt;
+            towski
+          &lt;/a&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;th&gt;Date:&lt;/th&gt;
+&lt;td&gt;2010-05-21 17:54:51 UTC&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;th&gt;Branch:&lt;/th&gt;
+&lt;td&gt;
+&lt;a href="https://code.launchpad.net/~towski/+junk/market"&gt;
+&lt;img src="https://launchpad.net/@@/branch" /&gt;
+          lp:~towski/+junk/market
+        &lt;/a&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;th&gt;Revno:&lt;/th&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;th&gt;Log message:&lt;/th&gt;
+&lt;td&gt;
+&lt;p&gt;initial&lt;/p&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+</content>
+
+  </entry>
+</feed>
